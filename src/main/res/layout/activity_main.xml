@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.app12.MainActivity">
+
+    <com.example.app12.DragViewGroup
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/testOnC1"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@color/colorAccent"
+            android:orientation="vertical" />
+
+        <LinearLayout
+            android:id="@+id/testOnC"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@color/colorPrimaryDark"
+            android:orientation="vertical" />
+
+        <LinearLayout
+            android:id="@+id/testOnC2"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@color/colorPrimary"
+            android:clickable="false"
+            android:orientation="vertical" />
+
+
+    </com.example.app12.DragViewGroup>
+
+
+</android.support.constraint.ConstraintLayout>
