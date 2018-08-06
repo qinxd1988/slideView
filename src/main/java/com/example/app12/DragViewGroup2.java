@@ -32,10 +32,11 @@ public class DragViewGroup2 extends FrameLayout {
             super.onViewReleased(releasedChild, xvel, yvel);
             int left = releasedChild.getLeft();
             //显示出来
-            if(left>-releasedChild.getMeasuredWidth()/2){
-                mViewDragHelper.settleCapturedViewAt(lp2.leftMargin,releasedChild.getTop());
-            }else{//隐藏
-                mViewDragHelper.settleCapturedViewAt(-(releasedChild.getMeasuredWidth()+lp2.rightMargin),releasedChild.getTop());
+            if (left > -releasedChild.getMeasuredWidth() / 2) {
+                //这里的源码和  mViewDragHelper.smoothSlideViewTo()其实差不多
+                mViewDragHelper.settleCapturedViewAt(lp2.leftMargin, releasedChild.getTop());
+            } else {//隐藏
+                mViewDragHelper.settleCapturedViewAt(-(releasedChild.getMeasuredWidth() + lp2.rightMargin), releasedChild.getTop());
             }
             invalidate();
         }
@@ -53,6 +54,17 @@ public class DragViewGroup2 extends FrameLayout {
             Log.e("TAG", "边界拖动");
             //进行制定view里面会调用接口onViewCaptured()，然后将View回调出来
             mViewDragHelper.captureChildView(mMenuView, pointerId);
+        }
+
+        //这个是如果设置点击事件后，能够拖动里面view,否则就不能点击
+        @Override
+        public int getViewHorizontalDragRange(View child) {
+            return 1;
+        }
+
+        @Override
+        public int getViewVerticalDragRange(View child) {
+            return 1;
         }
 
         //何时进行检测触摸事件
@@ -78,7 +90,6 @@ public class DragViewGroup2 extends FrameLayout {
         public int clampViewPositionVertical(View child, int top, int dy) {
             return 0;
         }
-
     };
 
 
@@ -115,6 +126,17 @@ public class DragViewGroup2 extends FrameLayout {
 
         mMenuView.layout(-(mMenuView.getMeasuredWidth() + lp2.rightMargin), lp2.topMargin, -lp2.rightMargin, lp2.topMargin + mMenuView.getMeasuredHeight());
     }
+
+    public void openDrawer() {
+        mViewDragHelper.smoothSlideViewTo(mMenuView, lp2.leftMargin, mMenuView.getTop());
+        invalidate();
+    }
+
+    public void closeDrawer() {
+        mViewDragHelper.smoothSlideViewTo(mMenuView, -(mMenuView.getMeasuredWidth() + lp2.rightMargin), mMenuView.getTop());
+        invalidate();
+    }
+
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {

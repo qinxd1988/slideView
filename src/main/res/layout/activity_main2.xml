@@ -6,6 +6,7 @@
     tools:context="com.example.app12.Main2Activity">
 
     <com.example.app12.DragViewGroup2
+        android:id="@+id/dragViewGroup2"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -17,7 +18,13 @@
         <LinearLayout
             android:layout_width="300dp"
             android:layout_height="match_parent"
-            android:background="@color/colorAccent" />
+            android:background="@color/colorAccent" >
+            <Button
+                android:text="eee"
+                android:onClick="close"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
 
     </com.example.app12.DragViewGroup2>
 

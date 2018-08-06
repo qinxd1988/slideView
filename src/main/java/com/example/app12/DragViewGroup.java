@@ -23,7 +23,7 @@ public class DragViewGroup extends FrameLayout {
     private ViewDragHelper mViewDragHelper;
     private ViewDragHelper.Callback callback = new ViewDragHelper.Callback() {
 
-        //拖动结束后使用,这样实现回弹效果。
+        //拖动结束后使用,这样实现回弹效果。如果在clampViewPositionHorizontal()回调方法中进行限制，就没有回弹的效果
         @Override
         public void onViewReleased(View releasedChild, float xvel, float yvel) {
             super.onViewReleased(releasedChild, xvel, yvel);
@@ -49,7 +49,6 @@ public class DragViewGroup extends FrameLayout {
             //这是进行指定当前的view的位置，里面使用了Scroller ，因此需要刷新使用。并且重写computeScroll()
             mViewDragHelper.settleCapturedViewAt(left, top);
             ViewCompat.postInvalidateOnAnimation(DragViewGroup.this);
-
         }
 
         @Override
